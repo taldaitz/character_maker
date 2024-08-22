@@ -17,6 +17,8 @@
                 <th>Agility</th>
                 <th>Intelligence</th>
                 <th>Job</th>
+                <th>Wins</th>
+                <th>Looses</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -32,6 +34,8 @@
                 <td>{{ character.agility }}</td>
                 <td>{{ character.intelligence }}</td>
                 <td>{{ character.job }}</td>
+                <td>{{ character.wins }}</td>
+                <td>{{ character.looses }}</td>
                 <td>
                     <a href="{{ path('app_character_show', {'id': character.id}) }}">show</a>
                     <a href="{{ path('app_character_edit', {'id': character.id}) }}">edit</a>

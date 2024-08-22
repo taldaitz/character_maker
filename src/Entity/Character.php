@@ -38,6 +38,12 @@ class Character
     #[ORM\Column(length: 255)]
     private ?string $job = null;
 
+    #[ORM\Column]
+    private ?int $wins = null;
+
+    #[ORM\Column]
+    private ?int $looses = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,5 +143,39 @@ class Character
         $this->job = $job;
 
         return $this;
+    }
+
+    public function getWins(): ?int
+    {
+        return $this->wins;
+    }
+
+    public function setWins(int $wins): static
+    {
+        $this->wins = $wins;
+
+        return $this;
+    }
+
+    public function addWin() : void
+    {
+        $this->wins++;
+    }
+
+    public function getLooses(): ?int
+    {
+        return $this->looses;
+    }
+
+    public function setLooses(int $looses): static
+    {
+        $this->looses = $looses;
+
+        return $this;
+    }
+
+    public function addLoss() : void
+    {
+        $this->looses++;
     }
 }
