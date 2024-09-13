@@ -5,6 +5,7 @@ namespace App\Tests;
 use App\Repository\CharacterRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 
 class CharacterTest extends WebTestCase
 {
@@ -27,6 +28,20 @@ class CharacterTest extends WebTestCase
 
         $this->assertResponseIsSuccessful(); // Smoke test
         $this->assertSelectorTextContains('h1', 'Character index');
+    }
+
+    public function testHomePageContent(): void
+    {
+
+        $expectedCharacter = $this->characterRepository->findOneBy([]);
+
+        $crawler = $this->client->request('GET', '/');
+
+        $characterNames = $crawler->filter('.character_name')->each(function (Crawler $node, $i): string {
+            return $node->text();
+        });
+
+        $this->assertContains($expectedCharacter->getName(), $characterNames);
     }
 
     public function testNewCharacterPage(): void
